@@ -1,32 +1,19 @@
 import { useState } from "react";
-import { Drawer, List, Avatar, Divider, Col, Row } from "antd";
+import { Drawer, List, Avatar, Divider, Col, Row, Space } from "antd";
 import "antd/dist/antd.css";
-import HelperFunction from "./helper";
+import ViewProfile from "./viewProfile";
+import { user_data } from "../../lib/data";
+
 const Profile = () => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [user_name, setName] = useState<string>('');
+  const [user_name, setName] = useState<string>("");
 
-  var user_data = [
-    {
-      name: "Hoshly",
-    },
-    {
-      name: "Tony",
-    },
-    {
-      name: "Frank",
-    },
-    {
-      name: "Silly",
-    },
-  ];
-
-  const showDrawer = (name:string) => {
-    setName(name)
+  const showDrawer = (name: string) => {
+    setName(name);
     setVisible(true);
   };
 
-  const onClose = () => {
+  const onClose = (): void => {
     setVisible(false);
   };
 
@@ -37,7 +24,9 @@ const Profile = () => {
         bordered
         renderItem={(item) => (
           <List.Item
-            actions={[<a onClick={() => showDrawer(item.name)}>View Profile</a>]}
+            actions={[
+              <a onClick={() => showDrawer(item.name)}>View Profile</a>,
+            ]}
           >
             <List.Item.Meta
               avatar={
@@ -50,46 +39,49 @@ const Profile = () => {
         )}
       />
       <Drawer
-        width={"60%"}
+        className="view-profile-drawer-right"
+        width={"65%"}
         placement="right"
         closable={false}
         onClose={() => onClose()}
         visible={visible}
       >
-        <p
-          className="site-description-item-profile-p"
-          style={{ marginBottom: 24 }}
-        >
-          User Profile
-        </p>
-        <p className="site-description-item-profile-p">Personal</p>
+        <Row justify="end" className="hide-on-large-screen">
+            <Col span={1} onClick={() => onClose()}>
+              X
+            </Col>
+        </Row>
+        <Space direction="vertical">
+          <p className="site-description-item-profile-p">User Profile</p>
+          <p className="site-description-item-profile-p">Personal</p>
+        </Space>
         <Row>
-          <Col span={12}>
-            <HelperFunction title="Full Name" content={user_name} />
+          <Col xs={{ span: 24 }} sm={12} md={12} lg={12} xl={12}>
+            <ViewProfile title="Full Name" content={user_name} />
           </Col>
-          <Col span={12}>
-            <HelperFunction title="Account" content="AntDesign@example.com" />
+          <Col xs={{ span: 24 }} sm={12} md={12} lg={12} xl={12}>
+            <ViewProfile title="Account" content="AntDesign@example.com" />
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
-            <HelperFunction title="City" content="HangZhou" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="City" content="HangZhou" />
           </Col>
-          <Col span={12}>
-            <HelperFunction title="Country" content="China🇨🇳" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Country" content="China🇨🇳" />
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
-            <HelperFunction title="Birthday" content="February 2,1900" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Birthday" content="February 2,1900" />
           </Col>
-          <Col span={12}>
-            <HelperFunction title="Website" content="-" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Website" content="-" />
           </Col>
         </Row>
         <Row>
           <Col span={24}>
-            <HelperFunction
+            <ViewProfile
               title="Message"
               content="Make things as simple as possible but no simpler."
             />
@@ -98,24 +90,24 @@ const Profile = () => {
         <Divider />
         <p className="site-description-item-profile-p">Company</p>
         <Row>
-          <Col span={12}>
-            <HelperFunction title="Position" content="Programmer" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Position" content="Programmer" />
           </Col>
-          <Col span={12}>
-            <HelperFunction title="Responsibilities" content="Coding" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Responsibilities" content="Coding" />
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
-            <HelperFunction title="Department" content="XTech" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Department" content="XTech" />
           </Col>
-          <Col span={12}>
-            <HelperFunction title="Supervisor" content={<a>Lin</a>} />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Supervisor" content={<a>Lin</a>} />
           </Col>
         </Row>
         <Row>
           <Col span={24}>
-            <HelperFunction
+            <ViewProfile
               title="Skills"
               content="C / C + +, data structures, software engineering, operating systems, computer networks, databases, compiler theory, computer architecture, Microcomputer Principle and Interface Technology, Computer English, Java, ASP, etc."
             />
@@ -124,16 +116,16 @@ const Profile = () => {
         <Divider />
         <p className="site-description-item-profile-p">Contacts</p>
         <Row>
-          <Col span={12}>
-            <HelperFunction title="Email" content="AntDesign@example.com" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Email" content="AntDesign@example.com" />
           </Col>
-          <Col span={12}>
-            <HelperFunction title="Phone Number" content="+86 181 0000 0000" />
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile title="Phone Number" content="+86 181 0000 0000" />
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
-            <HelperFunction
+          <Col xs={{ span: 24 }} sm={24} md={12} lg={12} xl={12}>
+            <ViewProfile
               title="Github"
               content={
                 <a href="http://github.com/ant-design/ant-design/">
